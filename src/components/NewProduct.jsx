@@ -1,5 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import { addNewProductAction } from "../redux/actions/product.actions";
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from "./Spinner/Spinner";
+
 const NewProduct = () => {
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState(0);
+  const { loading, error } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (productPrice <= 0 || productName.trim() === "") {
+      return;
+    }
+
+    dispatch(
+      addNewProductAction({
+        name: productName,
+        price: productPrice,
+      })
+    );
+  };
+
   return (
     <div className="row justify-content-center">
       <div className="col-md-8">
@@ -9,7 +32,7 @@ const NewProduct = () => {
               Add new product
             </h2>
 
-            <form action="">
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="name">Product Name</label>
                 <input
@@ -17,6 +40,10 @@ const NewProduct = () => {
                   className="form-control"
                   placeholder="Product name"
                   name="name"
+                  onChange={(e) => {
+                    setProductName(e.target.value);
+                  }}
+                  value={productName}
                 />
               </div>
 
@@ -27,16 +54,30 @@ const NewProduct = () => {
                   className="form-control"
                   placeholder="Product price"
                   name="price"
+                  onChange={(e) => {
+                    setProductPrice(Number(e.target.value));
+                  }}
+                  value={productPrice}
                 />
               </div>
 
               <button
                 type="submit"
-                className="btn btn-primary font-weigth-bold d-block w-100 text-uppercase"
+                className="btn btn-primary font-weight-bold d-block w-100 text-uppercase"
               >
                 Add new product
               </button>
             </form>
+            {loading ? (
+              <div>
+                <Spinner />
+              </div>
+            ) : null}
+            {error ? (
+              <p className="alert alert-danger p2 mt-4 font-weight-bold text-uppercase text-center">
+                something went wrong
+              </p>
+            ) : null}
           </div>
         </div>
       </div>

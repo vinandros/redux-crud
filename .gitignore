@@ -24,5 +24,4 @@ yarn-error.log*
 
 .eslintcache
 .vscode/launch.json
-
-
+db.json
