@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestProductsAction } from "../redux/actions/product.Actions";
+import { requestProductsAction } from "../redux/actions/productActions";
 import Spinner from "./Spinner/Spinner";
 import TrProduct from "./TrProduct";
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { requestEditProductAction } from "../redux/actions/product.Actions";
+import { requestEditProductAction } from "../redux/actions/productActions";
 const EditProduct = () => {
   const { productEdit } = useSelector((state) => state.products);
   const [product, setProduct] = useState({

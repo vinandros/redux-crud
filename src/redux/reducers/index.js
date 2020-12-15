@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import alertReducer from "./alert.Reducer";
+import alertReducer from "./alertReducer";
 
-import productsReducer from "./product.Reducer";
+import productsReducer from "./productReducer";
 
 export default combineReducers({
   products: productsReducer,

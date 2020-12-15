@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { addNewProductAction } from "../redux/actions/product.Actions";
+import { addNewProductAction } from "../redux/actions/productActions";
 import {
   showAlertAction,
   hideAlertAction,
-} from "../redux/actions/alert.Actions";
+} from "../redux/actions/alertActions";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "./Spinner/Spinner";
 

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import {
   deleteProductAction,
   editProductAction,
-} from "../redux/actions/product.Actions";
+} from "../redux/actions/productActions";
 const TrProduct = ({ product }) => {
   const { name, id, price } = product;
   const dispatch = useDispatch();
