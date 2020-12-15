@@ -3,10 +3,10 @@ import { addNewProductAction } from "../redux/actions/product.actions";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "./Spinner/Spinner";
 
-const NewProduct = () => {
+const NewProduct = ({ history }) => {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState(0);
-  const { loading, error } = useSelector((state) => state.products);
+  const { loading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -21,6 +21,7 @@ const NewProduct = () => {
         price: productPrice,
       })
     );
+    history.push("/");
   };
 
   return (
@@ -72,11 +73,6 @@ const NewProduct = () => {
               <div>
                 <Spinner />
               </div>
-            ) : null}
-            {error ? (
-              <p className="alert alert-danger p2 mt-4 font-weight-bold text-uppercase text-center">
-                something went wrong
-              </p>
             ) : null}
           </div>
         </div>
