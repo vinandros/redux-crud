@@ -10,6 +10,10 @@ import {
   DELETE_PRODUCT,
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAIL,
+  EDIT_PRODUCT,
+  EDIT_PRODUCT_FAIL,
+  EDIT_PRODUCT_SUCCESS,
+  REQUEST_EDIT_PRODUCT,
 } from "../../types";
 
 export const addNewProductAction = (product) => {
@@ -49,12 +53,11 @@ export const requestProductsAction = () => {
     });
     try {
       const res = await axiosClient.get("/products");
-      setTimeout(() => {
-        dispatch({
-          type: REQUEST_PRODUCTS_SUCCESS,
-          payload: res.data,
-        });
-      }, 1000);
+
+      dispatch({
+        type: REQUEST_PRODUCTS_SUCCESS,
+        payload: res.data,
+      });
     } catch (error) {
       dispatch({
         type: REQUEST_PRODUCTS_FAIL,
@@ -78,6 +81,35 @@ export const deleteProductAction = (productID) => {
     } catch (error) {
       dispatch({
         type: DELETE_PRODUCT_FAIL,
+      });
+    }
+  };
+};
+
+export const editProductAction = (product) => {
+  return (dispatch) => {
+    dispatch({
+      type: EDIT_PRODUCT,
+      payload: product,
+    });
+  };
+};
+
+export const requestEditProductAction = (product) => {
+  return async (dispatch) => {
+    dispatch({
+      type: REQUEST_EDIT_PRODUCT,
+    });
+    try {
+      const res = await axiosClient.put(`/products/${product.id}`, product);
+      dispatch({
+        type: EDIT_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: EDIT_PRODUCT_FAIL,
+        payload: product,
       });
     }
   };

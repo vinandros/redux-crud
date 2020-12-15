@@ -1,11 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-import { deleteProductAction } from "../redux/actions/product.actions";
+import {
+  deleteProductAction,
+  editProductAction,
+} from "../redux/actions/product.actions";
 const TrProduct = ({ product }) => {
   const { name, id, price } = product;
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleDelete = () => {
     Swal.fire({
@@ -23,6 +27,11 @@ const TrProduct = ({ product }) => {
     });
   };
 
+  const rediretToEdition = (product) => {
+    dispatch(editProductAction(product));
+    history.push(`/products/edit/${product.id}`);
+  };
+
   return (
     <tr>
       <td>{name}</td>
@@ -30,9 +39,14 @@ const TrProduct = ({ product }) => {
         <span className="font-weight-bold">${price} </span>
       </td>
       <td className="acciones">
-        <Link className="btn btn-primary mr-2" to={`/products/edit/${id}`}>
+        <button
+          type="button"
+          onClick={() => rediretToEdition(product)}
+          className="btn btn-primary mr-2"
+          to={`/products/edit/${id}`}
+        >
           Edit
-        </Link>
+        </button>
         <button onClick={handleDelete} type="button" className="btn btn-danger">
           Delete
         </button>

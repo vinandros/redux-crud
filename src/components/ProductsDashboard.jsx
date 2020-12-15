@@ -9,7 +9,6 @@ const ProductsDashboard = () => {
   const { products, loading, error } = useSelector((state) => state.products);
   useEffect(() => {
     dispatch(requestProductsAction());
-    return () => {};
   }, [dispatch]);
 
   return (
