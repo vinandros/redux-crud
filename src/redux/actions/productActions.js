@@ -24,13 +24,12 @@ export const addNewProductAction = (product) => {
 
     try {
       await axiosClient.post("/products", product);
-      setTimeout(() => {
-        dispatch({
-          type: ADD_NEW_PRODUCT_SUCCESS,
-          payload: product,
-        });
-        Swal.fire("Ready", "Product added successfully.", "success");
-      }, 3000);
+
+      dispatch({
+        type: ADD_NEW_PRODUCT_SUCCESS,
+        payload: product,
+      });
+      Swal.fire("Ready", "Product added successfully.", "success");
     } catch (error) {
       dispatch({
         type: ADD_NEW_PRODUCT_FAIL,
