@@ -2,13 +2,8 @@
   "products": [
     {
       "name": "Mango",
-      "price": 200,
+      "price": 2000,
       "id": 1
-    },
-    {
-      "id": 2,
-      "name": "Rib Eye 800g",
-      "price": 20000
     },
     {
       "name": "Limones",
